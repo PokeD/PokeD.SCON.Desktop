@@ -1,0 +1,19 @@
+language: csharp
+mono:
+  - latest
+
+solution: PokeD.SCON.Desktop.sln
+
+before_install:
+  - git submodule update --init --recursive
+  
+install:
+  - nuget restore PokeD.SCON.Desktop.sln
+
+script:
+  - xbuild /p:Configuration=Release PokeD.SCON.Desktop.sln
+  - xbuild /p:Configuration=Debug PokeD.SCON.Desktop.sln
+
+notifications:
+  email:
+    on_success: always
