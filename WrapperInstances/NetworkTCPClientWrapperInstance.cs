@@ -4,7 +4,7 @@ using System.Net.Sockets;
 
 using PokeD.Core.Wrappers;
 
-namespace PokeD.SCON.Windows.WrapperInstances
+namespace PokeD.SCON.Desktop.WrapperInstances
 {
     public class NetworkTCPClientWrapperInstance : INetworkTCPClient
     {

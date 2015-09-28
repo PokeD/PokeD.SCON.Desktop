@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 
 using PokeD.Core.Wrappers;
 
-using PokeD.SCON.Windows.WrapperInstances;
+using PokeD.SCON.Desktop.WrapperInstances;
 
-namespace PokeD.SCON.Windows
+namespace PokeD.SCON.Desktop
 {
     public static class Program
     {
