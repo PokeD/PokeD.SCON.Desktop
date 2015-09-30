@@ -68,25 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <Content Include="Content\Images\PokeD Logo.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Segoe_UI_10_Regular.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Segoe_UI_15_Bold.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Segoe_UI_9_Regular.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Times_New_Roman_9_Regular.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Segoe_UI_9_Bold.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
+  <ItemGroup>
+<Content Include="Content\**\*.xnb">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</Content>
+</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PokeD.Core\PokeD.Core.csproj">
       <Project>{1cf84e56-3bbe-4a3a-9234-5951bf2558c3}</Project>
