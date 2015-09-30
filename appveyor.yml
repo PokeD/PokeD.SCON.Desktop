@@ -12,5 +12,5 @@ before_build:
 - nuget restore
 
 build:
-  project: PokeD.SCON.Desktop.sln
+  project: PokeD.SCON.Windows.sln
   verbosity: minimal

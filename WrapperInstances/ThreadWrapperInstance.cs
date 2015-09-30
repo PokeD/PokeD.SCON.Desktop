@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-
 using PokeD.Core.Wrappers;
 
-namespace PokeD.SCON.Desktop.WrapperInstances
+namespace PokeD.SCON.Windows.WrapperInstances
 {
     public class ThreadWrapperInstance : IThreadWrapper
     {

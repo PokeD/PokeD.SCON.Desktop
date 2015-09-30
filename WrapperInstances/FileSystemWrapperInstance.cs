@@ -1,8 +1,7 @@
 ﻿using System;
-
 using PCLStorage;
 
-namespace PokeD.SCON.Desktop.WrapperInstances
+namespace PokeD.SCON.Windows.WrapperInstances
 {
     public class FileSystemWrapperInstance : Core.Wrappers.IFileSystem
     {

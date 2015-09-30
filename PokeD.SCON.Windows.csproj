@@ -7,8 +7,8 @@
     <MonoGamePlatform>WindowsGL</MonoGamePlatform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PokeD.SCON.Desktop</RootNamespace>
-    <AssemblyName>PokeD.SCON.Desktop</AssemblyName>
+    <RootNamespace>PokeD.SCON.Windows</RootNamespace>
+    <AssemblyName>PokeD.SCON.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,9 +37,11 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.4.0.459, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
       <HintPath>packages\PCLStorage.1.0.2\lib\net45\PCLStorage.dll</HintPath>
@@ -51,7 +53,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
@@ -95,12 +96,10 @@
       <Project>{cc37f46c-5138-4896-a287-ccf985177146}</Project>
       <Name>PokeD.SCON</Name>
     </ProjectReference>
-    <ProjectReference Include="PokeD.SCON\PokeD.SCON.UIConstructor\PokeD.SCON.UIConstructor.csproj">
-      <Project>{e754b38e-618e-4d82-80ba-be27c2ea77f0}</Project>
-      <Name>PokeD.SCON.UIConstructor</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="Content\MonoGame.Content.Builder.targets" />
 </Project>
