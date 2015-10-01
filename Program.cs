@@ -15,6 +15,7 @@ namespace PokeD.SCON.Windows
 
         static Program()
         {
+            AppDomainWrapper.Instance = new AppDomainWrapperInstance();
             FileSystemWrapper.Instance = new FileSystemWrapperInstance();
             NetworkTCPClientWrapper.Instance = new NetworkTCPClientWrapperInstance();
             NetworkTCPServerWrapper.Instance = new NetworkTCPServerWrapperInstance();
