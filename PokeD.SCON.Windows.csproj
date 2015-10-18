@@ -76,6 +76,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Aragas.Core\Aragas.Core.csproj">
+      <Project>{468d9d51-dfe7-47a8-b0d6-52d035fc714d}</Project>
+      <Name>Aragas.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="PokeD.Core\PokeD.Core.csproj">
       <Project>{1cf84e56-3bbe-4a3a-9234-5951bf2558c3}</Project>
       <Name>PokeD.Core</Name>

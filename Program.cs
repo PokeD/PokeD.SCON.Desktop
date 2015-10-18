@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
 
-using Microsoft.Xna.Framework;
+using Aragas.Core.Wrappers;
 
-using PokeD.Core.Wrappers;
+using Microsoft.Xna.Framework;
 
 using PokeD.SCON.Windows.WrapperInstances;
 

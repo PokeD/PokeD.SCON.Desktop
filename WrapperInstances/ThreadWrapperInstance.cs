@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using PokeD.Core.Wrappers;
+
+using Aragas.Core.Wrappers;
+using WaitCallback = Aragas.Core.Wrappers.WaitCallback;
 
 namespace PokeD.SCON.Windows.WrapperInstances
 {
@@ -42,6 +44,11 @@ namespace PokeD.SCON.Windows.WrapperInstances
         public void Sleep(int milliseconds)
         {
             Thread.Sleep(milliseconds);
+        }
+
+        public void QueueUserWorkItem(WaitCallback waitCallback)
+        {
+            ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(waitCallback));
         }
     }
 }

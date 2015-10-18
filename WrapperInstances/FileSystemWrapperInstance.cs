@@ -1,14 +1,17 @@
 ﻿using System;
+
 using PCLStorage;
 
 namespace PokeD.SCON.Windows.WrapperInstances
 {
-    public class FileSystemWrapperInstance : Core.Wrappers.IFileSystem
+    public class FileSystemWrapperInstance : Aragas.Core.Wrappers.IFileSystem
     {
         public IFolder UsersFolder { get; }
         public IFolder SettingsFolder { get; }
         public IFolder LogFolder { get; }
-        
+        public IFolder CrashLogFolder { get; }
+        public IFolder LuaFolder { get; }
+
         public FileSystemWrapperInstance()
         {
             var baseDirectory = FileSystem.Current.GetFolderFromPathAsync(AppDomain.CurrentDomain.BaseDirectory).Result;

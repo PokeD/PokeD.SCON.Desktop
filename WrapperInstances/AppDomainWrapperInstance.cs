@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Reflection;
 
-using PokeD.Core.Wrappers;
+using Aragas.Core.Wrappers;
 
 namespace PokeD.SCON.Windows.WrapperInstances
 {
     public class AppDomainWrapperInstance : IAppDomain
     {
-        public Assembly GetCallingAssembly()
+        public Assembly GetAssembly(Type type)
         {
-            return Assembly.GetCallingAssembly();
+            return Assembly.GetAssembly(type);
+
         }
 
         public Assembly[] GetAssemblies()
