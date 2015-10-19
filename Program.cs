@@ -17,8 +17,7 @@ namespace PokeD.SCON.Windows
         {
             AppDomainWrapper.Instance = new AppDomainWrapperInstance();
             FileSystemWrapper.Instance = new FileSystemWrapperInstance();
-            NetworkTCPClientWrapper.Instance = new NetworkTCPClientWrapperInstance();
-            NetworkTCPServerWrapper.Instance = new NetworkTCPServerWrapperInstance();
+            TCPClientWrapper.Instance = new TCPClientWrapperInstance();
             InputWrapper.Instance = new InputWrapperInstance();
             ThreadWrapper.Instance = new ThreadWrapperInstance();
         }
