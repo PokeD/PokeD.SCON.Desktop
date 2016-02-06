@@ -2,7 +2,7 @@
 
 using Aragas.Core.Wrappers;
 
-namespace PokeD.SCON.Windows.WrapperInstances
+namespace PokeD.SCON.Desktop.WrapperInstances
 {
     public class InputWrapperInstance : IInputWrapper
     {

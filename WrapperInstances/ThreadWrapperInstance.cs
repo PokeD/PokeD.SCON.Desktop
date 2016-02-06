@@ -1,29 +1,32 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 
 using Aragas.Core.Wrappers;
 
-namespace PokeD.SCON.Windows.WrapperInstances
+namespace PokeD.SCON.Desktop.WrapperInstances
 {
-    public class ThreadClass : IThread
+    public class CustomThread : IThread
     {
         private readonly Thread _thread;
 
         public string Name { get { return _thread.Name; } set { _thread.Name = value; } }
         public bool IsBackground { get { return _thread.IsBackground; } set { _thread.IsBackground = value; } }
 
-        public bool IsRunning { get; }
+        public bool IsRunning => _thread.ThreadState != ThreadState.Stopped;
 
-        internal ThreadClass(Action action) { _thread = new Thread(new ThreadStart(action)); }
+        internal CustomThread(Aragas.Core.Wrappers.ThreadStart action) { _thread = new Thread(new System.Threading.ThreadStart(action)); }
+        internal CustomThread(Aragas.Core.Wrappers.ParameterizedThreadStart action) { _thread = new Thread(new System.Threading.ParameterizedThreadStart(action)); }
 
         public void Start() { _thread.Start(); }
+        public void Start(object obj) { _thread.Start(obj); }
 
         public void Abort() { _thread.Abort(); }
     }
 
     public class ThreadWrapperInstance : IThreadWrapper
     {
-        public IThread CreateThread(Action action) { return new ThreadClass(action); }
+        public IThread CreateThread(Aragas.Core.Wrappers.ThreadStart action) { return new CustomThread(action); }
+
+        public IThread CreateThread(Aragas.Core.Wrappers.ParameterizedThreadStart action) { return new CustomThread(action); }
 
         public void Sleep(int milliseconds) { Thread.Sleep(milliseconds); }
 

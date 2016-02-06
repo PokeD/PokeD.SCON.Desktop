@@ -4,13 +4,14 @@ using System.Net.Sockets;
 
 using Aragas.Core.Wrappers;
 
-namespace PokeD.SCON.Windows.WrapperInstances
+namespace PokeD.SCON.Desktop.WrapperInstances
 {
-    public class TCPClientImplementation : ITCPClient
+    public class SocketTCPClient : ITCPClient
     {
         public int RefreshConnectionInfoTime { get; set; }
 
-        public string IP => !IsDisposed && Client != null ? (Client.RemoteEndPoint as IPEndPoint)?.Address.ToString() : "";
+        public string IP => !IsDisposed && Client != null && Client.Connected ? (Client.RemoteEndPoint as IPEndPoint)?.Address.ToString() : "";
+        public ushort Port => (ushort)(!IsDisposed && Client != null && Client.Connected ? (Client.RemoteEndPoint as IPEndPoint)?.Port : 0);
         public bool Connected => !IsDisposed && Client != null && Client.Connected;
         public int DataAvailable => !IsDisposed && Client != null ? Client.Available : 0;
 
@@ -20,16 +21,14 @@ namespace PokeD.SCON.Windows.WrapperInstances
         private bool IsDisposed { get; set; }
 
 
-        public TCPClientImplementation()
+        public SocketTCPClient()
         {
-            Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Client.NoDelay = true;
+            Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) { NoDelay = true };
         }
-        internal TCPClientImplementation(Socket socket)
+        internal SocketTCPClient(Socket socket)
         {
             Client = socket;
             Stream = new NetworkStream(Client);
-
         }
 
         public ITCPClient Connect(string ip, ushort port)
@@ -99,8 +98,9 @@ namespace PokeD.SCON.Windows.WrapperInstances
         }
     }
 
-    public class TCPClientWrapperInstance : ITCPClientWrapper
+    public class TCPClientFactoryInstance : ITCPClientFactory
     {
-        public ITCPClient CreateTCPClient() { return new TCPClientImplementation(); }
+        public ITCPClient CreateTCPClient() { return new SocketTCPClient(); }
+        internal static ITCPClient CreateTCPClient(Socket socket) { return new SocketTCPClient(socket); }
     }
 }

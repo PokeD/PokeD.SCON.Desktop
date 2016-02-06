@@ -4,10 +4,13 @@ using System.Net;
 using Aragas.Core.Wrappers;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-using PokeD.SCON.Windows.WrapperInstances;
+using PokeD.Core.Extensions;
 
-namespace PokeD.SCON.Windows
+using PokeD.SCON.Desktop.WrapperInstances;
+
+namespace PokeD.SCON.Desktop
 {
     public static class Program
     {
@@ -17,25 +20,31 @@ namespace PokeD.SCON.Windows
         {
             AppDomainWrapper.Instance = new AppDomainWrapperInstance();
             FileSystemWrapper.Instance = new FileSystemWrapperInstance();
-            TCPClientWrapper.Instance = new TCPClientWrapperInstance();
+            TCPClientWrapper.Instance = new TCPClientFactoryInstance();
             InputWrapper.Instance = new InputWrapperInstance();
             ThreadWrapper.Instance = new ThreadWrapperInstance();
+
+            PacketExtensions.Init();
         }
 
-        [STAThread]
+        //[STAThread]
         public static void Main(params string[] args)
         {
             if (Type.GetType("Mono.Runtime") != null) // -- Running on Mono
                 ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
-            Action<Rectangle> onResize = null;
-            using (Game = new EmptyKeysUI(ref onResize))
-            {
-                Game.Window.AllowUserResizing = true;
-                Game.Window.ClientSizeChanged += (sender, eventArgs) => onResize(Game.Window.ClientBounds);
-
+            using (Game = new EmptyKeysUI(PlatformCode))
                 Game.Run();
-            }
+            
+        }
+        private static void PlatformCode(Game client)
+        {
+            client.Window.ClientSizeChanged += ((EmptyKeysUI) client).OnResize;
+            client.IsMouseVisible = true;
+            client.Window.Position = new Point(0, 0);
+            client.Window.AllowUserResizing = true;
+
+            ((EmptyKeysUI) client).Resize(new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
         }
     }
 }
