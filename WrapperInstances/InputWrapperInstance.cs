@@ -19,7 +19,7 @@ namespace PokeD.SCON.Desktop.WrapperInstances
             //ConsoleManager.WriteLine(message);
         }
 
-        public void LogWriteLine(string message)
+        public void LogWriteLine(DateTime time, string message)
         {
             //LogManager.WriteLine(message);
         }

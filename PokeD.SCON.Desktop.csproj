@@ -115,11 +115,6 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\**\*.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="Aragas.Core\Aragas.Core.csproj">
       <Project>{468d9d51-dfe7-47a8-b0d6-52d035fc714d}</Project>
       <Name>Aragas.Core</Name>
