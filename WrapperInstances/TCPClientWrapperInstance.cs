@@ -49,39 +49,23 @@ namespace PokeD.SCON.Desktop.WrapperInstances
             return this;
         }
 
-        public void WriteByteArray(byte[] array)
+        public int Write(byte[] buffer, int offset, int count)
         {
             if (IsDisposed)
-                return;
+                return -1;
 
-            try
-            {
-                var length = array.Length;
-
-                var bytesSend = 0;
-                while (bytesSend < length)
-                    bytesSend += Client.Send(array, bytesSend, length - bytesSend, 0);
-            }
-            catch (IOException) { Dispose(); }
-            catch (SocketException) { Dispose(); }
+            try { return Client.Send(buffer, offset, count, SocketFlags.None); }
+            catch (IOException) { Dispose(); return -1; }
+            catch (SocketException) { Dispose(); return -1; }
         }
-        public byte[] ReadByteArray(int length)
+        public int Read(byte[] buffer, int offset, int count)
         {
             if (IsDisposed)
-                return new byte[0];
+                return -1;
 
-            try
-            {
-                var array = new byte[length];
-
-                var bytesReceive = 0;
-                while (bytesReceive < length)
-                    bytesReceive += Client.Receive(array, bytesReceive, length - bytesReceive, 0);
-
-                return array;
-            }
-            catch (IOException) { Dispose(); return new byte[0]; }
-            catch (SocketException) { Dispose(); return new byte[0]; }
+            try { return Client.Receive(buffer, offset, count, SocketFlags.None); }
+            catch (IOException) { Dispose(); return -1; }
+            catch (SocketException) { Dispose(); return -1; }
         }
 
         public Stream GetStream() { return Stream; }
@@ -100,7 +84,7 @@ namespace PokeD.SCON.Desktop.WrapperInstances
 
     public class TCPClientFactoryInstance : ITCPClientFactory
     {
-        public ITCPClient CreateTCPClient() { return new SocketTCPClient(); }
-        internal static ITCPClient CreateTCPClient(Socket socket) { return new SocketTCPClient(socket); }
+        public ITCPClient Create() => new SocketTCPClient();
+        internal static ITCPClient CreateTCPClient(Socket socket) => new SocketTCPClient(socket);
     }
 }
